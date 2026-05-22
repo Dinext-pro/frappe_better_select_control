@@ -1,0 +1,4 @@
+*.egg-info/
+__pycache__/
+*.pyc
+frappe_better_select_control/public/dist/

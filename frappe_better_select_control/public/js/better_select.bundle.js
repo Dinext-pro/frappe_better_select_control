@@ -6,9 +6,19 @@
 */
 
 
-frappe.ui.form.add_options = function(input, options_list) {
+frappe.ui.form.add_options = function(input, options_list, sort, doctype) {
     let $select = $(input),
     container = $select;
+
+    if (!doctype) {
+        doctype = $select.attr('data-doctype');
+        if (!doctype && typeof frappe.get_route === 'function') {
+            let route = frappe.get_route();
+            if (route && route[0] === 'List' && route[1]) {
+                doctype = route[1];
+            }
+        }
+    }
     
     if (!$.isArray(options_list)) return $select;
     
@@ -65,7 +75,7 @@ frappe.ui.form.add_options = function(input, options_list) {
                 if (!char.length && _label[0] !== '!') char = _label[0];
                 label = _label.substring(1);
             }
-            if (label) label = __(label);
+            if (label) label = __(label, null, doctype);
             
             if (char === '$') is_placeholder = true;
             else if (char === '#') is_group = true;
