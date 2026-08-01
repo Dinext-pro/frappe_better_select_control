@@ -1,1 +1,2 @@
-frappe>=13.0.0
+frappe @ file:///home/frappe/bench-clients/apps/frappe
+
