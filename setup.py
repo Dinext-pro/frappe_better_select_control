@@ -9,7 +9,10 @@ from frappe_better_select_control import __version__ as version
 
 
 with open('requirements.txt') as f:
-    install_requires = f.read().strip().split('\n')
+    install_requires = [
+        line.strip() for line in f
+        if line.strip() and not line.lstrip().startswith('#')
+    ]
 
 
 setup(
