@@ -13,9 +13,8 @@ classifiers = [
 requires-python = ">=3.6"
 readme = "README.md"
 dynamic = ["version"]
-dependencies = [
-     "frappe @ file:///home/frappe/bench-clients/apps/frappe"
-]
+# Frappe is supplied by the target bench, not by a host-specific pip URL.
+dependencies = []
 
 [project.urls]
 Documentation = "https://github.com/kid1194/frappe-better-select-control"
