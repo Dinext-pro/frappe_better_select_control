@@ -1,0 +1,21 @@
+stages: [test]
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+    - if: '$CI_COMMIT_TAG'
+package:portable-install:
+  stage: test
+  image: python:3.11-slim-bookworm
+  tags: [dinext, light, docker]
+  variables:
+    PIP_DISABLE_PIP_VERSION_CHECK: "1"
+    PIP_NO_CACHE_DIR: "1"
+  script:
+    - python -m pip wheel --no-deps --wheel-dir dist .
+    - python scripts/check-portable-wheel.py
+    - python -m pip install --no-deps dist/*.whl
+    - python -I -c "from frappe_better_select_control import __version__; print(__version__)"
+  artifacts:
+    paths: [dist/]
+    expire_in: 30 days
