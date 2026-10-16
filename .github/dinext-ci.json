@@ -1,0 +1,8 @@
+{
+  "app": "frappe_better_select_control",
+  "package_dir": "frappe_better_select_control",
+  "mode": "portable",
+  "gitflow": false,
+  "frontend_tests": false,
+  "skip_test_records": false
+}
