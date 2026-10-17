@@ -21,6 +21,5 @@ jobs:
       support_ref: main
       mode: portable
       frontend_tests: false
-      privacy_baselines: ${{ vars.DINEXT_PRIVACY_BASELINES }}
-    secrets:
-      DINEXT_PRIVACY_DENYLIST: ${{ secrets.DINEXT_PRIVACY_DENYLIST }}
+
+# Register the imported validation workflow after Actions activation.
